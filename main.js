@@ -4,6 +4,20 @@ const navMenu = document.getElementById('nav-menu');
 navToggle.addEventListener('click', () => {
     navMenu.classList.toggle('open');
 });
+// Close menu when clicking outside (mobile)
+document.addEventListener('click', function(e) {
+    if (window.innerWidth <= 600 && navMenu.classList.contains('open')) {
+        if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+            navMenu.classList.remove('open');
+        }
+    }
+});
+// Close menu with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+        navMenu.classList.remove('open');
+    }
+});
 // Close menu on link click (mobile)
 document.querySelectorAll('.navbar ul li a').forEach(link => {
     link.addEventListener('click', () => {
@@ -21,17 +35,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: 'smooth'
             });
         }
-    });
-});
-
-// WhatsApp package selection
-document.querySelectorAll('.wa-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const plan = this.getAttribute('data-plan');
-        const message = encodeURIComponent(`Halo kak, saya mau coba paketnya yang (${plan}), bisa bantu saya? Terima kasih!`);
-        const waUrl = `https://wa.me/6281234567890?text=${message}`;
-        window.open(waUrl, '_blank');
     });
 });
 

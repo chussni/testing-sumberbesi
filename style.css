@@ -89,49 +89,49 @@ body {
     color: var(--dark);
     text-align: center;
 }
-/* Center logo and nav vertically */
 .navbar {
     position: sticky;
     top: 0;
     width: 100%;
-    background: var(--white);
+    background: var(--primary);
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     z-index: 100;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 1.2rem 2rem 0.5rem 2rem;
+    padding: 0.5rem 2rem 1.2rem 2rem;
     transition: background 0.3s;
-    gap: 0.2rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 .navbar .logo {
     font-weight: 700;
     font-size: 1.7rem;
-    color: var(--primary);
+    color: var(--white);
     letter-spacing: 1px;
-    text-align: center;
-    width: 100%;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+    cursor: pointer;
 }
 .navbar ul {
     list-style: none;
     display: flex;
+    flex-direction: row;
     gap: 2rem;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    padding-left: 0;
-    margin-bottom: 0.2rem;
+    margin-top: 0.5rem;
 }
 .navbar ul li a {
     text-decoration: none;
-    color: var(--dark);
+    color: var(--white);
     font-weight: 500;
     transition: color 0.2s;
+    font-size: 1.05rem;
 }
 .navbar ul li a:hover {
-    color: var(--primary);
+    color: var(--purple);
 }
 .navbar .nav-toggle {
     display: none;
@@ -141,7 +141,7 @@ body {
 .navbar .nav-toggle span {
     width: 25px;
     height: 3px;
-    background: var(--primary);
+    background: #FFD600;
     margin: 4px 0;
     border-radius: 2px;
     transition: 0.3s;
@@ -463,34 +463,54 @@ footer {
     }
 }
 @media (max-width: 600px) {
-    .hero {
-        background-position: left center !important;
-    }
     .navbar {
-        flex-direction: column;
-        align-items: center;
-        padding: 1.2rem 1rem 0.5rem 1rem;
+        padding: 0.5rem 0.5rem 1.2rem 0.5rem;
+        flex-direction: row;
+        justify-content: space-between;
     }
     .navbar .logo {
-        margin-bottom: 0.2rem;
-    }
-    .navbar ul {
-        position: static;
-        background: none;
-        flex-direction: row;
-        width: 100%;
-        gap: 1.2rem;
-        box-shadow: none;
-        display: flex !important;
-        justify-content: center;
-        padding-left: 0;
-        margin-bottom: 0.2rem;
-    }
-    .navbar ul li {
-        margin: 0;
+        margin-bottom: 0;
     }
     .navbar .nav-toggle {
-        display: none !important;
+        display: flex;
+        position: absolute;
+        top: 16px;
+        right: 18px;
+        z-index: 102;
+    }
+    .navbar ul {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 220px;
+        background: var(--primary);
+        flex-direction: column;
+        gap: 1.2rem;
+        box-shadow: -2px 0 16px rgba(52,152,219,0.13);
+        display: none;
+        margin-top: 0;
+        padding-top: 4rem;
+        align-items: center;
+        transition: transform 0.3s ease;
+    }
+    .navbar ul.open {
+        display: flex;
+        animation: slideInMenu 0.3s;
+    }
+    @keyframes slideInMenu {
+        from { transform: translateX(100%); }
+        to { transform: translateX(0); }
+    }
+    .navbar ul li {
+        width: 100%;
+        text-align: center;
+    }
+    .navbar ul li a {
+        width: 100%;
+        display: block;
+        padding: 0.9rem 0;
+        font-size: 1.1rem;
     }
     .features-list {
         grid-template-columns: 1fr !important;
